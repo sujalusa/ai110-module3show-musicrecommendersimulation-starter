@@ -11,7 +11,6 @@ Your goal is to:
 - Evaluate what your system gets right and wrong
 - Reflect on how this mirrors real world AI recommenders
 
-Replace this paragraph with your own summary of what your version does.
 
 ---
 
@@ -213,3 +212,9 @@ A few sentences about what you learned:
 - Where do you think human judgment still matters, even if the model seems "smart"
 
 /Users/sujalprajapati/Desktop/ai110-module3show-musicrecommendersimulation-starter/screenshot.png 
+
+/Users/sujalprajapati/Desktop/ai110-module3show-musicrecommendersimulation-starter/s1.png
+
+/Users/sujalprajapati/Desktop/ai110-module3show-musicrecommendersimulation-starter/s2.png
+
+/Users/sujalprajapati/Desktop/ai110-module3show-musicrecommendersimulation-starter/s3.png

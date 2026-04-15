@@ -2,101 +2,55 @@
 
 ## 1. Model Name  
 
-Give your model a short, descriptive name.  
-Example: **VibeFinder 1.0**  
+VibeFinder 1.0  
 
 ---
 
-## 2. Intended Use  
+## 2. Goal / Task  
 
-Describe what your recommender is designed to do and who it is for. 
-
-Prompts:  
-
-- What kind of recommendations does it generate  
-- What assumptions does it make about the user  
-- Is this for real users or classroom exploration  
+VibeFinder suggests the top 5 songs from a small music catalog that best match a user's preferences for genre, mood, and energy level. It predicts which songs a person might enjoy based on these simple traits, like recommending upbeat pop for someone who wants happy, high-energy music.  
 
 ---
 
-## 3. How the Model Works  
+## 3. Intended Use and Non-Intended Use  
 
-Explain your scoring approach in simple language.  
-
-Prompts:  
-
-- What features of each song are used (genre, energy, mood, etc.)  
-- What user preferences are considered  
-- How does the model turn those into a score  
-- What changes did you make from the starter logic  
-
-Avoid code here. Pretend you are explaining the idea to a friend who does not program.
+This system is designed for classroom exploration of basic recommendation algorithms, helping students understand how simple rules can create personalized suggestions. It's for learning about AI biases and evaluation, not for real-world music apps. Don't use it for commercial recommendations, medical mood therapy, or any serious decision-making—it ignores many song features and has limited data.  
 
 ---
 
-## 4. Data  
+## 4. Data Used  
 
-Describe the dataset the model uses.  
-
-Prompts:  
-
-- How many songs are in the catalog  
-- What genres or moods are represented  
-- Did you add or remove data  
-- Are there parts of musical taste missing in the dataset  
+The dataset has 20 songs with features like genre, mood, energy level (0-1 scale), tempo, valence, danceability, and acousticness. Genres include pop, lofi, rock, jazz, and others, but some are underrepresented (only 1-2 songs each). Limits: Small size means limited variety, and it misses features like lyrics or artist popularity.  
 
 ---
 
-## 5. Strengths  
+## 5. Algorithm Summary  
 
-Where does your system seem to work well  
-
-Prompts:  
-
-- User types for which it gives reasonable results  
-- Any patterns you think your scoring captures correctly  
-- Cases where the recommendations matched your intuition  
+VibeFinder scores songs by checking if the genre matches (+1 point), mood matches (+1 point), and how close the energy levels are (up to 2 points for perfect match). It ranks songs by total score and picks the top 5. I changed the weights from the starter code to double energy importance and halve genre to test sensitivity.  
 
 ---
 
-## 6. Limitations and Bias 
+## 6. Observed Behavior / Biases  
 
-Where the system struggles or behaves unfairly. 
-
-Prompts:  
-
-- Features it does not consider  
-- Genres or moods that are underrepresented  
-- Cases where the system overfits to one preference  
-- Ways the scoring might unintentionally favor some users  
+The system works well for users with clear, matching preferences, like high-energy pop fans getting upbeat songs. But it has biases: low-energy users get fewer good options since only 3 songs are mellow, and genre matches can override mood or energy conflicts, leading to mismatched vibes.  
 
 ---
 
-## 7. Evaluation  
+## 7. Evaluation Process  
 
-How you checked whether the recommender behaved as expected. 
-
-Prompts:  
-
-- Which user profiles you tested  
-- What you looked for in the recommendations  
-- What surprised you  
-- Any simple tests or comparisons you ran  
-
-No need for numeric metrics unless you created some.
+I tested 8 profiles—3 normal ones (High-Energy Pop, Chill Lofi, Deep Intense Rock) and 5 adversarial ones to find weaknesses. I ran experiments like changing weights and compared results to my intuition. Surprises included how energy doubling made lists more diverse but less genre-focused.  
 
 ---
 
-## 8. Future Work  
+## 8. Ideas for Improvement  
 
-Ideas for how you would improve the model next.  
+Add more song features like danceability or tempo to the scoring. Include user feedback loops to learn from past recommendations. Expand the dataset to 100+ songs for better variety and reduce biases.  
 
-Prompts:  
+---
 
-- Additional features or preferences  
-- Better ways to explain recommendations  
-- Improving diversity among the top results  
-- Handling more complex user tastes  
+## 9. Personal Reflection  
+
+My biggest learning moment was realizing how simple rules can create "smart" recommendations but also hide big biases, like favoring high-energy songs. AI tools helped generate adversarial profiles and analyze code quickly, but I double-checked their suggestions against the data to ensure accuracy. I was surprised that even basic matching feels like real personalization—it's why music apps work despite being imperfect. Next, I'd add collaborative filtering to consider what similar users like, or build a web interface for easier testing.  
 
 ---
 
