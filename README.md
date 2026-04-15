@@ -15,21 +15,24 @@ Replace this paragraph with your own summary of what your version does.
 
 ---
 
+
 ## How The System Works
 
-Explain your design in plain language.
+Real-world music recommendation systems like Spotify and YouTube use hybrid approaches combining collaborative filtering (analyzing user behavior patterns and similarities with other users) and content-based filtering (matching songs based on musical attributes). Collaborative filtering predicts what you'll love by finding users with similar tastes and recommending what they enjoyed, using data like play counts, likes, skips, and playlist additions. Content-based filtering recommends songs similar to ones you've liked based on features like genre, tempo, mood, and energy levels. My simplified version prioritizes content-based filtering using available song attributes to create personalized recommendations, focusing on matching user preferences for musical "vibe" through weighted scoring of features like energy, valence, and tempo.
 
-Some prompts to answer:
+- **Song features**: genre (categorical), mood (categorical), energy (0-1 scale), tempo_bpm (beats per minute), valence (0-1 positivity scale), danceability (0-1 scale), acousticness (0-1 scale)
+- **UserProfile information**: stores user preferences as target values for numerical features (energy, valence, danceability, acousticness, tempo_bpm) and preferred categories for genre and mood, plus weights for each feature's importance in scoring
+- **Recommender scoring**: computes a score for each song by calculating similarity between user preferences and song attributes, using distance-based formulas for numerical features (e.g., 1 - normalized absolute difference) and exact matches for categorical features, then applying weights to combine into a total score
+- **Recommendation selection**: ranks all songs by their computed scores and returns the top N highest-scoring songs as recommendations
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+**Algorithm Recipe**:
+- +2.0 points for exact genre match
+- +1.0 point for exact mood match
+- For numerical features (energy, valence, danceability, acousticness, tempo_bpm): similarity score = 1 - (abs(user_pref - song_value) / max_range), weighted by 1.0 each
+- Total score = sum of all weighted components
+- Rank songs by total score descending to select top recommendations
 
-You can include a simple diagram or bullet list if helpful.
-
----
+**Potential Biases**: This system might over-prioritize genre matches due to the higher weight, potentially ignoring songs with perfect mood or energy matches in different genres. It could also create filter bubbles by only recommending similar content, missing serendipitous discoveries.
 
 ## Getting Started
 
@@ -209,3 +212,4 @@ A few sentences about what you learned:
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
 
+/Users/sujalprajapati/Desktop/ai110-module3show-musicrecommendersimulation-starter/screenshot.png 
