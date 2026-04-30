@@ -1,5 +1,19 @@
 # 🎵 Music Recommender Simulation
 
+## ✨ PROJECT UPDATE: AI-Enhanced with Agentic Workflow & RAG
+
+This project has been **significantly enhanced** with advanced AI features:
+
+- ✅ **Agentic Workflow**: Multi-step reasoning with transparent decision-making
+- ✅ **Retrieval-Augmented Generation (RAG)**: Semantic song search via TF-IDF + cosine similarity
+- ✅ **Natural Language Understanding**: Accepts conversational input instead of structured data
+- ✅ **Comprehensive Logging**: Full transparency on all AI decisions
+- ✅ **Reliability & Fallbacks**: Works offline without API key; graceful error handling
+
+**See [SETUP_GUIDE.md](SETUP_GUIDE.md) for complete documentation of AI features.**
+
+---
+
 ## Project Summary
 
 In this project you will build and explain a small music recommender system.
@@ -17,6 +31,8 @@ Your goal is to:
 
 ## How The System Works
 
+### Traditional Mode (Rule-Based)
+
 Real-world music recommendation systems like Spotify and YouTube use hybrid approaches combining collaborative filtering (analyzing user behavior patterns and similarities with other users) and content-based filtering (matching songs based on musical attributes). Collaborative filtering predicts what you'll love by finding users with similar tastes and recommending what they enjoyed, using data like play counts, likes, skips, and playlist additions. Content-based filtering recommends songs similar to ones you've liked based on features like genre, tempo, mood, and energy levels. My simplified version prioritizes content-based filtering using available song attributes to create personalized recommendations, focusing on matching user preferences for musical "vibe" through weighted scoring of features like energy, valence, and tempo.
 
 - **Song features**: genre (categorical), mood (categorical), energy (0-1 scale), tempo_bpm (beats per minute), valence (0-1 positivity scale), danceability (0-1 scale), acousticness (0-1 scale)
@@ -31,11 +47,44 @@ Real-world music recommendation systems like Spotify and YouTube use hybrid appr
 - Total score = sum of all weighted components
 - Rank songs by total score descending to select top recommendations
 
+### AI-Enhanced Mode (Agentic + RAG)
+
+The new AI-powered system adds sophisticated reasoning:
+
+1. **Natural Language Processing**: Converts conversational queries into structured preferences
+   - Input: `"I want upbeat pop music for working out"`
+   - Output: `{genres: ["pop"], moods: ["energetic", "happy"], energy: 0.8}`
+
+2. **Retrieval-Augmented Generation**: Semantic song search
+   - Uses TF-IDF vectors to represent songs
+   - Finds contextually relevant candidates via cosine similarity
+   - Combines semantic relevance with rule-based scoring
+
+3. **Multi-Step Validation**: Applies multiple criteria
+   - Exact genre/mood matching (highest priority)
+   - Energy level similarity (±0.2 tolerance)
+   - Semantic relevance scores
+
+4. **Explainable AI**: Generates human-readable explanations
+   - Why each song matched
+   - Transparency into decision-making process
+   - Full reasoning trace for debugging
+
 **Potential Biases**: This system might over-prioritize genre matches due to the higher weight, potentially ignoring songs with perfect mood or energy matches in different genres. It could also create filter bubbles by only recommending similar content, missing serendipitous discoveries.
 
 ## Getting Started
 
-### Setup
+### Quick Start (5 minutes)
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Run the demo
+python demo.py
+```
+
+### Full Setup
 
 1. Create a virtual environment (optional but recommended):
 
@@ -43,6 +92,7 @@ Real-world music recommendation systems like Spotify and YouTube use hybrid appr
    python -m venv .venv
    source .venv/bin/activate      # Mac or Linux
    .venv\Scripts\activate         # Windows
+   ```
 
 2. Install dependencies
 
